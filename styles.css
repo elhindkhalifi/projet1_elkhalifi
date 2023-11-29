@@ -1,0 +1,30 @@
+body {
+    background-image: url("image.png"); 
+    background-size: cover;
+    background-size: 92%;
+    display: flex;
+    flex-direction: row; 
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: 100vh;
+}
+
+.auth-button {
+    margin: 10px 180px 30px 5px; 
+    padding: 10px;
+    background-color: #4D6881;
+    color: rgb(14, 14, 14);
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.auth-button a {
+    color: rgb(14, 14, 14);
+    text-decoration: none;
+}
+
+.auth-button:hover {
+    background-color: #4D6881;
+}
