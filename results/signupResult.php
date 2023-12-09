@@ -73,6 +73,8 @@ if (isset($_POST)) {
             
         ];
         $newUser = createUser($data);
+        $url = '../home.php';
+        header('Location: ' . $url);
     } else {
         // redirect to signup et donner les messages d'erreur
         $_SESSION['signup_errors'] = [

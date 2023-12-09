@@ -5,7 +5,7 @@ function createUser(array $data)
 {
     global $conn;
     
-    $query = "INSERT INTO user(id,user_name,email,pwd,fname,lname, role_id, billing_address_id, shipping_address_id,) VALUES (NULL, ?, ?, ?, ?, ?, 3, NULL,NULL)";
+    $query = "INSERT INTO user(id,user_name,email,pwd,fname,lname, role_id) VALUES (NULL, ?, ?, ?, ?, ?, 3)";
     if ($stmt = mysqli_prepare($conn, $query)) {
         
         mysqli_stmt_bind_param(

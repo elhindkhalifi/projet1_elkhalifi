@@ -1,13 +1,6 @@
 
-<center>
-    <h2>Welcome to/Bienvenue chez Inda's</h2>
-    <h3>Merci de vous enregistrer pour pouvoir faire des commandes en ligne</h3>
-<h2>Enregistrement </h2>
-<a href="../index.php">Retour Acceuil</a>
-</center>
 <?php 
 session_start();
-var_dump($_SESSION);
 
 $user_name = '';
 if (isset($_SESSION['signup_form']['user_name'])) {
@@ -32,15 +25,92 @@ if (isset($_SESSION['signup_form']['lname'])) {
     $lname = $_SESSION['signup_form']['lname'];
 }
 
-$role_id = '';
-if (isset($_SESSION['signup_form']['role_id'])) {
-    $role_id = $_SESSION['signup_form']['role_id'];
-}
+
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #BDC4CD;
+}
 
-<h2>S'enregistrer</h2>
-<a href="../">Accueil</a>
+center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+a {
+    color: #4D6881;
+    text-decoration: none;
+    font-weight: bold;
+    display: block; /* Ensures the margin-bottom works properly */
+}
+
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin: auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+p {
+    color: red;
+    font-size: 0.8rem;
+}
+
+button{
+    background-color: #4D6881;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #c2185b;
+}
+
+    </style>
+</head>
+<body>
+    
+
+
+<center>
+    <h2>Welcome to/Bienvenue chez Inda's</h2>
+    <h3>Merci de vous enregistrer pour pouvoir faire des commandes en ligne</h3>
+<h2>Enregistrement </h2>
+<a href="../index.php">Retour Acceuil</a>
+</center>
 <!-- Chaque formulaire a sa page de résultats -->
 <form method="post" action="../results/signupResult.php">
     <div>
@@ -88,3 +158,6 @@ if (isset($_SESSION['signup_form']['role_id'])) {
 
     <button type="submit">S'enregistrer</button>
 </form>
+<?php
+include "../public/footer.php";
+?>
