@@ -5,21 +5,18 @@ function createUser(array $data)
 {
     global $conn;
     
-    $query = "INSERT INTO user(id,user_name,email,pwd,fname,lname,billing_address_id,shipping_address_id,role_id) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)";
-
+    $query = "INSERT INTO user(id,user_name,email,pwd,fname,lname, role_id, billing_address_id, shipping_address_id,) VALUES (NULL, ?, ?, ?, ?, ?, 3, NULL,NULL)";
     if ($stmt = mysqli_prepare($conn, $query)) {
         
         mysqli_stmt_bind_param(
             $stmt,
-            "sssssiii",
+            "sssss",
             $data['user_name'],
             $data['email'],
             $data['pwd'],
             $data['fname'],
             $data['lname'],
-            $data['billing_address_id'],
-            $data['shipping_address_id'],
-            $data['role_id']
+            
         );
 
         /* Exécution de la requête */
@@ -77,19 +74,20 @@ function updateUser(array $data)
 {
     global $conn;
 
-    $query = "UPDATE user SET user_name = ?, email = ?, pwd = ?
-            WHERE user.id = ?;";
+        $query = "UPDATE user SET user_name = ?,email = ?,pwd = ?,fname = ?,lname = ?,billing_address_id = ?,shipping_address_id = ? WHERE user.id = ?;";
 
-    if ($stmt = mysqli_prepare($conn, $query)) {
-
-        mysqli_stmt_bind_param(
-            $stmt,
-            "sssi",
-            $data['user_name'],
-            $data['email'],
-            $data['pwd'],
-            $data['id'],
-        );
+        if ($stmt = mysqli_prepare($conn, $query)) {
+            
+            mysqli_stmt_bind_param(
+                $stmt,
+                "ssssii",
+                $data['email'],
+                $data['pwd'],
+                $data['fname'],
+                $data['lname'],
+                $data['billing_address_id'],
+                $data['shipping_address_id'],
+            );
 
         /* Exécution de la requête */
         $result = mysqli_stmt_execute($stmt);
@@ -115,4 +113,9 @@ function deleteUser(int $id)
         /* Exécution de la requête */
         $result = mysqli_stmt_execute($stmt);
     }
+}
+function updateUserToken($userId, $token) {
+    global $conn;
+    $sql = "UPDATE user SET token = '$token' WHERE id = $userId";
+    mysqli_query($conn, $sql);
 }

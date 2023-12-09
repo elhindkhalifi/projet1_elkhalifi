@@ -67,7 +67,10 @@ if (isset($_POST)) {
         $data = [
             'user_name' => $_POST['user_name'],
             'email' => $_POST['email'],
-            'pwd' => $encodedPwd
+            'pwd' => $encodedPwd,
+            'fname'=> $_POST['fname'],
+            'lname'=> $_POST['lname'],
+            
         ];
         $newUser = createUser($data);
     } else {
