@@ -28,7 +28,6 @@ if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true)
   	 			<h4>Products</h4>
   	 			<ul>
                     <li><a href="#hats">Hats</a></li>
-                    <li><a href="#scarves">Scarves</a></li>
                     <li><a href="#gloves">Gloves</a></li>
                     <li><a href="#jackets">Winter Jackets</a></li>
                     <li><a href="#shoes">Shoes</a></li>
@@ -39,6 +38,7 @@ if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true)
   	 				<li><a href="#">Reset your password</a></li>
                     <li><a href="#">Your addresses</a></li>
                     <li><a href="./authentification/logout.php">Logout</a></li>
+                    <li><a href="./authentification/deleteUser.php">Delete account</a></li>
   	 			</ul>
                 <br>
                    <h4>Follow us</h4>
@@ -46,7 +46,6 @@ if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true)
   	 				<a href="#"><i class="fab fa-facebook-f"></i></a>
   	 				<a href="#"><i class="fab fa-twitter"></i></a>
   	 				<a href="#"><i class="fab fa-instagram"></i></a>
-  	 				<a href="#"><i class="fab fa-linkedin-in"></i></a>
   	 			</div>
   	 		
   	 		

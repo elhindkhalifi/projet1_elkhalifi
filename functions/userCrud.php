@@ -97,19 +97,19 @@ function updateUser(array $data,$user_name)
 }
 
 //supprimer un utilisateur
-function deleteUser(int $id)
+function deleteUser( $user_name)
 {
     global $conn;
 
     $query = "DELETE FROM user
-                WHERE user.id = ?;";
+                WHERE user.user_name= ?;";
 
     if ($stmt = mysqli_prepare($conn, $query)) {
 
         mysqli_stmt_bind_param(
             $stmt,
-            "i",
-            $id,
+            "s",
+            $user_name,
         );
 
         /* Exécution de la requête */
