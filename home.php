@@ -1,5 +1,12 @@
 <?php
 include "./public/header.php";
+session_start();
+
+if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true) {
+    // Redirect tau login quand user pas connecter
+    $url = './authentification/login.php';
+    header('Location: ' . $url);
+}
 ?>
 <div style="display: flex;">
 
@@ -20,9 +27,9 @@ include "./public/header.php";
   	 			</ul><br>
                    <h4>Profile</h4>
   	 			<ul>
-  	 				<li><a href="#">Profile Info</a></li>
+  	 				<li><a href="./authentification/updateUser.php">Profile Info</a></li>
   	 				<li><a href="#">Reset your password</a></li>
-                    <li><a href="#">Logout</a></li>
+                    <li><a href="./authentification/logout.php">Logout</a></li>
   	 			</ul>
                 <br>
                    <h4>Follow us</h4>

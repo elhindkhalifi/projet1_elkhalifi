@@ -2,11 +2,19 @@
 
 
 session_start(); // Start the session
+if (isset($_SESSION['user_logged_in']) ) {
+    // Redirect au home quand user est deja connecter
+   if( $_SESSION['user_logged_in'] == true){
+    $url = '../home.php';
+    header('Location: ' . $url);
+   }
+}
+if (isset($_SESSION['login_attempts'])){
 if ($_SESSION['login_attempts'] >= 10000000000) {
         // TODO:BLOCK IP 
     echo "Too many login attempts. Please try again later.";
     exit;
-}
+}}
 $user_name = '';
 if (isset($_SESSION['login_form']['user_name'])) {
     $user_name = $_SESSION['login_form']['user_name'];

@@ -1,7 +1,13 @@
 
 <?php 
-session_start();
-
+session_start(); // Start the session
+if (isset($_SESSION['user_logged_in']) ) {
+    // Redirect au home quand user est deja connecter
+   if( $_SESSION['user_logged_in'] == true){
+    $url = '../home.php';
+    header('Location: ' . $url);
+   }
+}
 $user_name = '';
 if (isset($_SESSION['signup_form']['user_name'])) {
     $user_name = $_SESSION['signup_form']['user_name'];

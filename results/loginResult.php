@@ -39,7 +39,13 @@ if (isset($_POST)) {
             
                     echo '</br></br>Mon token : </br>';
                     var_dump($token);
-            
+                   
+                    $_SESSION['user_logged_in'] = true;
+                    // You can store other user-related information in the session if needed
+                    $_SESSION['user_id'] = $userData['id'];
+                    $_SESSION['user_name'] = $userData['user_name'];
+                    $url = '../home.php';
+                    header('Location: ' . $url);
                 }else {
                     $fieldValidation = false;
                     $_SESSION['login_attempts']++;
@@ -68,6 +74,10 @@ if (isset($_POST)) {
              header('Location: ' . $url);
              var_dump($_SESSION['login_errors']);
         }else{
+            $_SESSION['user_logged_in'] = true;
+            // You can store other user-related information in the session if needed
+            $_SESSION['user_id'] = $userData['id'];
+            $_SESSION['user_name'] = $userData['user_name'];
             $url = '../home.php';
             header('Location: ' . $url);
         }
