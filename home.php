@@ -1,11 +1,19 @@
 <?php
 include "./public/header.php";
+//using two methods to check wether to use is logged in for now :both token and user logged in sessions 
+//todo: only token in one file to call eveerytime pour rendre le code plus propre
 session_start();
-
+if (!isset($_SESSION['token'])) {
+    // Redirect to login if the token is not present
+    header("Location: ./authentification/login.php");
+    exit();
+}
 if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true) {
     // Redirect tau login quand user pas connecter
     $url = './authentification/login.php';
     header('Location: ' . $url);
+    exit();
+
 }
 ?>
 <div style="display: flex;">
@@ -27,8 +35,9 @@ if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true)
   	 			</ul><br>
                    <h4>Profile</h4>
   	 			<ul>
-  	 				<li><a href="./authentification/updateUser.php">Profile Info</a></li>
+  	 				<li><a href="./authentification/updateUser.php">Edit Profile Info</a></li>
   	 				<li><a href="#">Reset your password</a></li>
+                    <li><a href="#">Your addresses</a></li>
                     <li><a href="./authentification/logout.php">Logout</a></li>
   	 			</ul>
                 <br>

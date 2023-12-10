@@ -85,8 +85,7 @@ function pwdValidation($pwd)
 }
 function nameValidation($name)
 {
-    //minimum 6 max 16
-    $length = strlen($name);
+    
     if (empty($name))  {
         return [
             'isValid' => false,

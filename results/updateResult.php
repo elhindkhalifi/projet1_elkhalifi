@@ -15,19 +15,12 @@ session_start();
 
 
 if (isset($_POST)) {
-    $_SESSION['signup_form'] = $_POST;
+    $_SESSION['update_form'] = $_POST;
 
-    unset($_SESSION['signup_errors']);
+    unset($_SESSION['update_errors']);
 
     $fieldValidation = true;
-    // valid user name
-    if (isset($_POST['user_name'])) {
-        $nameIsValidData = usernameIsValid($_POST['user_name']);
 
-        if ($nameIsValidData['isValid'] == false) {
-            $fieldValidation = false;
-        }
-    }
 
     //valid email
     if (isset($_POST['email'])) {
@@ -37,14 +30,8 @@ if (isset($_POST)) {
             $fieldValidation = false;
         }
     }
-    // valid mdp
-    if (isset($_POST['pwd'])) {
-        $pwdIsValidData = pwdValidation($_POST['pwd']);
+    
 
-        if ($pwdIsValidData['isValid'] == false) {
-            $fieldValidation = false;
-        }
-    }
     if (isset($_POST['fname'])) {
         $fnameIsValidData = nameValidation($_POST['fname']);
 
@@ -62,36 +49,35 @@ if (isset($_POST)) {
 
     if ($fieldValidation == true) {
         //envoyer à la DB
-        $saltedPassword= addSalt($_POST['pwd']);
-        $encodedPwd = encodePwd($saltedPassword);
+        
         $data = [
-            'user_name' => $_POST['user_name'],
             'email' => $_POST['email'],
-            'pwd' => $encodedPwd,
             'fname'=> $_POST['fname'],
             'lname'=> $_POST['lname'],
             
         ];
-        $newUser = createUser($data);
-        $url = '../authentification/login.php';
+        $user_name= $_POST['user_name'];
+        $newUser = updateUser($data,$user_name);
+        $_SESSION['success']="modification faite avec succes!";
+        var_dump($_SESSION['success']);
+        $url = '../authentification/updateUser.php';
         header('Location: ' . $url);
     } else {
-
-        // redirect to signup et donner les messages d'erreur
-        $_SESSION['signup_errors'] = [
-            'user_name' => $nameIsValidData['msg'],
+        
+        // redirect to update et donner les messages d'erreur
+        $_SESSION['update_errors'] = [
             'email' => $emailIsValidData['msg'],
-            'pwd' => $pwdIsValidData['msg'],
             'fname' => $fnameIsValidData['msg'],
             'lname' => $lnameIsValidData['msg'],
 
         ];
-        $url = '../authentification/signup.php';
+    
+        $url = '../authentification/updateUser.php';
         header('Location: ' . $url);
     }
 } else {
-    //redirect vers signup
-    $url = '../authentification/signup.php';
+    //redirect vers update
+    $url = '../authentification/updateUser.php';
     header('Location: ' . $url);
 }
 

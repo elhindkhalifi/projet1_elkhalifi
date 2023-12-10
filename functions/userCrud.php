@@ -70,27 +70,29 @@ function getUserByUsername(string $user_name)
 }
 
 //modifier un utilisateur
-function updateUser(array $data)
+function updateUser(array $data,$user_name)
 {
     global $conn;
 
-        $query = "UPDATE user SET user_name = ?,email = ?,pwd = ?,fname = ?,lname = ?,billing_address_id = ?,shipping_address_id = ? WHERE user.id = ?;";
-
+        $query = "UPDATE user SET email = ?,pwd = ?,fname = ?,lname = ?,billing_address_id = ?,shipping_address_id = ? WHERE user.user_name=?";
         if ($stmt = mysqli_prepare($conn, $query)) {
             
             mysqli_stmt_bind_param(
                 $stmt,
-                "ssssii",
+                "ssssiis",
                 $data['email'],
                 $data['pwd'],
                 $data['fname'],
                 $data['lname'],
                 $data['billing_address_id'],
                 $data['shipping_address_id'],
+                $user_name
             );
 
         /* Exécution de la requête */
         $result = mysqli_stmt_execute($stmt);
+        return $result;
+
     }
 }
 
@@ -112,10 +114,13 @@ function deleteUser(int $id)
 
         /* Exécution de la requête */
         $result = mysqli_stmt_execute($stmt);
+        return $result;
+
     }
 }
 function updateUserToken($userId, $token) {
     global $conn;
     $sql = "UPDATE user SET token = '$token' WHERE id = $userId";
     mysqli_query($conn, $sql);
+
 }
