@@ -35,7 +35,7 @@ if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true)
                    <h4>Profile</h4>
   	 			<ul>
   	 				<li><a href="./authentification/updateUser.php">Edit Profile Info</a></li>
-  	 				<li><a href="#">Reset your password</a></li>
+  	 				<li><a href="./authentification/updatePwd.php">Reset your password</a></li>
                     <li><a href="#">Your addresses</a></li>
                     <li><a href="./authentification/logout.php">Logout</a></li>
                     <li><a href="./authentification/deleteUser.php">Delete account</a></li>

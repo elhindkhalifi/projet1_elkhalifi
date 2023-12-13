@@ -6,36 +6,39 @@ require_once("../functions/userCrud.php");
 require_once ('../functions/functions.php');
 
 //todo:token only in one file to call
- // profile.php
  session_start();
+// Check if the user is logged in
+//check1
  if (!isset($_SESSION['token'])) {
     // Redirect to login if the token is not present
     header("Location: ./authentification/login.php");
     exit();
 }
+// Retrieve the token from the session
+$token = $_SESSION['token'];
 
+//check2
 if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true) {
     // Redirect to login if the user is not logged in
     header("Location: ./authentification/login.php");
     exit();
 }
 
-// Now, the user is logged in, and you can use other session variables if needed
-$userID = $_SESSION['user_id'];
-$userName = $_SESSION['user_name'];
-
-
-// Retrieve the token from the session
-$token = $_SESSION['token'];
- // Check if the user is logged in
+ // Check3
  if (!isset($_SESSION["user_name"])) {
      header("Location: ./authentification/login.php"); // Redirect to login page if not logged in
      exit();
  }
 
+
+ // Now, the user is logged in
+$userID = $_SESSION['user_id'];
+$userName = $_SESSION['user_name'];
+
+
  $userDetails = getUserByUsername($_SESSION['user_name']);
  
- // Display the user information in the form
+ 
  ?>
  
  <!DOCTYPE html>
@@ -98,14 +101,14 @@ p {
     font-size: 0.8rem;
 }
 
-button{
+input[type="submit"]{
     background-color: #4D6881;
     color: #fff;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
-button:hover {
+input[type="submit"]:hover {
     background-color: #c2185b;
 }
 
@@ -149,7 +152,7 @@ button:hover {
     </div>
 
 
-    <button type="submit">Modifier</button>
+    <input type="submit" value="Modifier">
 </form>
  </body>
  </html>
