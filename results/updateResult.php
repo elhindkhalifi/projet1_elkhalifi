@@ -59,7 +59,6 @@ if (isset($_POST)) {
         $user_name= $_POST['user_name'];
         $newUser = updateUser($data,$user_name);
         $_SESSION['success']="modification faite avec succes!";
-        var_dump($_SESSION['success']);
         $url = '../authentification/updateUser.php';
         header('Location: ' . $url);
     } else {

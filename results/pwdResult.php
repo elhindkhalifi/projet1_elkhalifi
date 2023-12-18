@@ -46,9 +46,13 @@ if (isset($_POST)) {
 
     if ($fieldValidation) {
         //envoyer à la DB
-
+        $saltedPassword= addSalt($newPassword);
+        $encodedPwd = encodePwd($saltedPassword);
         $data = [
-            'pwd' => $newPassword,
+            'email' => $userDetails['email'],
+            'fname'=> $userDetails['fname'],
+            'lname'=> $userDetails['lname'],
+            'pwd' => $encodedPwd,
         ];
 
         $user_name = $_SESSION['user_name'];

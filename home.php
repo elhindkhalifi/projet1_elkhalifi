@@ -27,7 +27,7 @@ if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true)
                <br>
   	 			<h4>Products</h4>
   	 			<ul>
-                    <li><a href="#hats">Hats</a></li>
+                    <li><a href="./gestion/products.php">Hats</a></li>
                     <li><a href="#gloves">Gloves</a></li>
                     <li><a href="#jackets">Winter Jackets</a></li>
                     <li><a href="#shoes">Shoes</a></li>
@@ -36,7 +36,7 @@ if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true)
   	 			<ul>
   	 				<li><a href="./authentification/updateUser.php">Edit Profile Info</a></li>
   	 				<li><a href="./authentification/updatePwd.php">Reset your password</a></li>
-                    <li><a href="#">Your addresses</a></li>
+                    <li><a href="./authentification/address.php">Your addresses</a></li>
                     <li><a href="./authentification/logout.php">Logout</a></li>
                     <li><a href="./authentification/deleteUser.php">Delete account</a></li>
   	 			</ul>
@@ -54,7 +54,7 @@ if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true)
 <!-- Stylish Welcome Section -->
 <section style="background-color: #BDC4CD; padding: 50px; text-align: center;">
     <div class="container">
-        <h2>Welcome to Inda's Winter Clothing</h2>
+        <h2>Welcome to Inda's </h2>
         <p>
             Founded by Hind Elkhalifi, a visionary college student at Teccart College in Montreal, Inda's Winter Clothing sets the stage for a new era in winter fashion. We are dedicated to crafting high-quality, stylish, and comfortable clothing that keeps you warm and confident throughout the season.
         </p>

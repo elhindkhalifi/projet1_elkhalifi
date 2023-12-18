@@ -9,6 +9,7 @@ require_once ('../functions/functions.php');
 
 session_start(); // Start the session
 
+
 //Authentification
 
 if (isset($_POST)) {
@@ -41,11 +42,19 @@ if (isset($_POST)) {
                     var_dump($token);
                    
                     $_SESSION['user_logged_in'] = true;
-                    // You can store other user-related information in the session if needed
+                    // storing user info in session
                     $_SESSION['user_id'] = $userData['id'];
                     $_SESSION['user_name'] = $userData['user_name'];
-                    $url = '../home.php';
-                    header('Location: ' . $url);
+                    //if an admin or superadmin or client logs in          
+                        if ($userData['role_id'] == 2) {
+                            header('Location:../adminHome.php');
+                            exit();
+                        }elseif ($userData['role_id'] == 1) {
+                            header('Location: ../adminHome.php');
+                            exit();
+                        }else{
+                        $url = '../home.php';
+                        header('Location: ' . $url);}
                 }else {
                     $fieldValidation = false;
                     $_SESSION['login_attempts']++;

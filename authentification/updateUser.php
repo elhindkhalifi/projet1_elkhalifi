@@ -36,7 +36,7 @@ $userID = $_SESSION['user_id'];
 $userName = $_SESSION['user_name'];
 
 
- $userDetails = getUserByUsername($_SESSION['user_name']);
+$userDetails = getUserByUsername($_SESSION['user_name']);
  
  
  ?>

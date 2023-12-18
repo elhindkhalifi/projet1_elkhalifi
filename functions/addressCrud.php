@@ -13,4 +13,17 @@ function createAddress($data) {
     return $result;
         }
         };
+        function getAddressById(int $id)
+{   
+    global $conn;
+    $result = mysqli_query($conn, "SELECT * FROM address WHERE id = " . $id);
+
+    $data = mysqli_fetch_assoc($result);
+    
+
+    return $data;
+}
+
+
+
 ?>

@@ -98,5 +98,49 @@ function nameValidation($name)
     ];
 }
 
+//validation du zipcode
+function zipCodeIsValid($zipcode): array
+{
+    $result = [
+        'isValid' => true,
+        'msg' => ''
+    ];
+    echo '<br><br>';
+    if (strlen($zipcode) !=6 ) {
+        $result = [
+            'isValid' => false,
+            'msg' => "le code postale utilisé doit contenir exactement 6 caracteres."
+        ];
+    }
+    return $result;
+};
+//validation de street
+function  streetIsValid( $street): array
+{
+    $result = [
+        'isValid' => true,
+        'msg' => ''
+    ];
+    echo '<br><br>';
+    if (is_numeric($street)){
+    if (strlen($street) > 50) {
+        $result = [
+            'isValid' => false,
+            'msg' => "Le numéro de rue utilisé est trop long."
+        ];
+        }
+    }elseif(empty($street)){
+        $result = [
+            'isValid' => false,
+            'msg' => "Le numéro de rue est requis."
+        ];
+    }elseif(!is_numeric($street)){
+        $result = [
+            'isValid' => false,
+            'msg' => "Le numéro de rue doit etre un nombre."
+        ];
+    }
+    return $result;
+}
 
 ?>

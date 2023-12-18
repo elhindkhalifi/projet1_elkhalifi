@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Header Design</title>
+  <title>Inda's</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="./public/style.css">
@@ -95,14 +95,14 @@
      <div class="container">
       <div class="row">
         <div class="header-col">
-          <h1>Inda's clothing company</h1>
+          <h1>Inda's </h1>
         </div>
         <div class="header-col">
-        <ul><h1>Welcome to Inda's online website </h1></ul>
+        <ul><h1>Inda's winter clothing brand: online website </h1></ul>
         </div>
         <div class="header-col">
           <ul>
-            <li><a href="../home.php">Home</a></li>
+            <li><a href="./home.php">Home</a></li>
             <li><a href="#">Products</a></li>
             <li><a href="#">Cart</a></li>
           </ul>
