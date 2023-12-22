@@ -6,7 +6,7 @@ require_once ('../functions/functions.php');
 session_start();
 include "../public/header.php";
 //using two methods to check wether to use is logged in for now :both token and user logged in sessions 
-//todo: only token in one file to call eveerytime pour rendre le code plus propre
+//todo: only token in one file to call everytime pour rendre le code plus propre
 
 if (!isset($_SESSION['token'])) {
     // Redirect to login if the token is not present

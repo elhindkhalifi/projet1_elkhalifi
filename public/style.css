@@ -65,4 +65,12 @@ body {
     background-color: #555;
   }
   /* HVNEFUIH */
- 
+ /* Add your styling here */
+.success-message {
+  background-color: #4CAF50; /* Green background color */
+  color: white; /* White text color */
+  padding: 20px; /* Padding around the message */
+  border-radius: 8px; /* Rounded corners */
+  text-align: center; /* Center the text */
+  margin-top: 20px; /* Add some top margin for spacing */
+}

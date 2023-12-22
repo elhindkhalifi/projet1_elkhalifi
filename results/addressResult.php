@@ -1,3 +1,5 @@
+<?php include "../public/header.php";
+?>
 <a href="../">Accueil</a>
 <?php
 require_once("../config/connexion.php");
@@ -7,55 +9,101 @@ require_once("../functions/addressCrud.php");
 require_once ('../functions/functions.php');
 session_start();
 
+// Initialiser des variables pour suivre la validation des adresses
+$validationBilling = true;  // Validation de l'adresse de facturation
+$validationShipping = true; // Validation de l'adresse de livraison
+
+// Validation de l'adresse de facturation
+$validationBillingStreet = streetIsValid($_POST["billing_street_nb"]);
+$validationBillingZipCode = zipCodeIsValid($_POST["billing_zip_code"]);
+$validationBillingStreetName = nameValidation($_POST["billing_street_name"]);
 
 
-// Todo : valider les données de mon form 
-// si les données ne sont pas bonne : renvoyer vers le form d'enregistrement (redirect auto )
-// attention on veut récupérer les données rentrées précédement : $_SESSION
+if (!$validationBillingZipCode["isValid"]) {
+    $validationBilling = false;
 
-// Validation des adresses
-$streetIsValid = streetIsValid($_POST["street"]);
-$zipCodeIsValid = zipCodeIsValid($_POST["zipcode"]);
-
-if (!$streetIsValid["isValid"] || !$zipCodeIsValid["isValid"]){
-    $allAddressesValid = false;
-   
-};
-
-// Afficher toutes les adresses quand elles sont toutes valides
-if ($allAddressesValid) {
-    $newAddressData = [
-        "street" => $_POST["street"],
-        "street_nb" => $_POST["street_nb"],
-        "type" => $_POST["type"],
-        "city" => $_POST["city"],
-        "zipcode" => $_POST["zipcode"],
-    ];
-
-    // Ajouter l'adresse dans la base de données
-    createAddress($newAddressData);
-
-    // Afficher le message de succès
-    echo "<p class='success-message'>L'adresse  a été ajoutée avec succès.</p>";
+}
+if (!$validationBillingStreet["isValid"]) {
+    $validationBilling = false;
+ 
+}
+if (!$validationBillingStreetName["isValid"]) {
+    $validationBilling = false;
+ 
 }
 
-?>
+// Validation de l'adresse de livraison
+$validationShippingStreet = streetIsValid($_POST["shipping_street_nb"]);
+$validationShippingZipCode = zipCodeIsValid($_POST["shipping_zip_code"]);
+$validationShippingStreetName = nameValidation($_POST["shipping_street_name"]);
 
-<?php if ($streetIsValid["isValid"] && $zipCodeIsValid["isValid"] && $addressIsValid["isValid"]) : ?>
-<div class="buttons">
-    <!-- Revenir a un formulaire pour modifier avec des champs préremplis -->
-    <a href='../forms/form3.php'>
-        <input type='button' id='modifier' name='modifier' value='Modifier'>
-    </a>
+if (!$validationShippingZipCode["isValid"]) {
+    $validationShipping = false;
+   
+}
+if (!$validationShippingStreet["isValid"]) {
+    $validationShipping = false;
+    
+}
+if (!$validationShippingStreetName["isValid"]) {
+    $validationShipping = false;
+ 
+}
+if (!$validationBilling ||!$validationShipping) {
+    $_SESSION['update_errors_shipping'] = [
+        "street_name"=>$validationShippingStreetName["msg"],
+       "street_nb"=>$validationShippingStreet["msg"],
+       "zip_code"=>$validationShippingZipCode["msg"],
+    ];
+    $_SESSION['update_errors_billing'] = [
+        "street_name"=>$validationBillingStreetName["msg"],
+        "street_nb"=>$validationBillingStreet["msg"],
+        "zip_code"=>$validationBillingZipCode["msg"],
+     ];
 
-    <!-- Ajouter les adresses a la base de données -->
-    <a href='resultValidation.php'>
-        <input type='button' id='valider' name='valider' value='Valider'>
-    </a>
-</div>
-<?php endif; ?>
-</div>
+    $url = '../authentification/address.php';
+    header('Location: ' . $url);
 
-</body>
-</html>
+}
+
+// Si les deux adresses sont valides, mettez à jour les adresses de l'utilisateur dans la base de données
+if ($validationBilling && $validationShipping) {
+    $dataBillingAddress = [
+        "street_name" => $_POST["billing_street_name"],
+        "street_nb" => $_POST["billing_street_nb"],
+        "country" => "canada",
+        "province" => $_POST["billing_province"],
+        "city" => $_POST["billing_city"],
+        "zip_code" => $_POST["billing_zip_code"],
+    ];
+
+    $dataShippingAddress = [
+        "street_name" => $_POST["shipping_street_name"],
+        "street_nb" => $_POST["shipping_street_nb"],
+        "country" =>"canada",
+        "province" => $_POST["shipping_province"],
+        "city" => $_POST["shipping_city"],
+        "zip_code" => $_POST["shipping_zip_code"],
+    ];
+    // Create addresses and get last inserted IDs
+    $billingAddressID = createAddress($dataBillingAddress);
+    $shippingAddressID = createAddress($dataShippingAddress);
+    var_dump($shippingAddressID);
+
+    // Mettez à jour les adresses dans la base de données
+    updateUserAddresses($conn, $_SESSION['user_id'], $billingAddressID, $shippingAddressID);
+
+
+    // Afficher le message de succès
+    ?>
+
+    <div class="success-message">
+        Les adresses ont été mises à jour avec succès.
+    </div>
+    
+    <?php
+    }
+    ?>
+    
+    <?php include "../public/footer.php"; ?>
 

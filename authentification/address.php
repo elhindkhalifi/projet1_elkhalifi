@@ -117,14 +117,14 @@ $billingAddressDetails= getAddressbyId($userDetails['billing_address_id']);
         <label for="billing_street_name">Street Name :</label>
         <input id="billing_street_name" type="text" name="billing_street_name" value="<?php echo isset($billingAddressDetails['street_name']) ? $billingAddressDetails['street_name'] : ''; ?>" >
         <p>
-            <?php echo isset($_SESSION['update_errors']['street_name']) ? $_SESSION['update_errors']['street_name'] : ''; ?>  
+            <?php echo isset($_SESSION['update_errors_billing']['street_name']) ? $_SESSION['update_errors_billing']['street_name'] : ''; ?>  
         </p>
     </div>
     <div>
         <label for="billing_street_nb">Street Number :</label>
         <input id="billing_street_nb" type="text" name="billing_street_nb" value="<?php echo isset($billingAddressDetails['street_nb']) ? $billingAddressDetails['street_nb'] : ''; ?>">
         <p>
-            <?php echo isset($_SESSION['update_errors']['street_nb']) ? $_SESSION['update_errors']['street_nb'] : ''; ?>  
+            <?php echo isset($_SESSION['update_errors_billing']['street_nb']) ? $_SESSION['update_errors_billing']['street_nb'] : ''; ?>  
         </p>
     </div>
     <div>
@@ -137,7 +137,7 @@ $billingAddressDetails= getAddressbyId($userDetails['billing_address_id']);
             <option value="Quebec City" <?php echo (isset($billingAddressDetails['city']) && $billingAddressDetails['city'] === 'Quebec City') ? 'selected' : ''; ?>>Quebec City</option>
         </select>
         <p>
-            <?php echo isset($_SESSION['update_errors']['city']) ? $_SESSION['update_errors']['city'] : ''; ?>  
+            <?php echo isset($_SESSION['update_errors_billing']['city']) ? $_SESSION['update_errors_billing']['city'] : ''; ?>  
         </p>
     </div>
     <div>
@@ -155,14 +155,14 @@ $billingAddressDetails= getAddressbyId($userDetails['billing_address_id']);
             <option value="SK" <?php echo (isset($billingAddressDetails['province']) && $billingAddressDetails['province'] === 'SK') ? 'selected' : ''; ?>>Saskatchewan</option>
         </select>
         <p>
-            <?php echo isset($_SESSION['update_errors']['province']) ? $_SESSION['update_errors']['province'] : ''; ?>  
+            <?php echo isset($_SESSION['update_errors_billing']['province']) ? $_SESSION['update_errors_billing']['province'] : ''; ?>  
         </p>
     </div>
     <div>
         <label for="billing_zip_code">ZIP Code :</label>
         <input id="billing_zip_code" type="text" name="billing_zip_code" value="<?php echo isset($billingAddressDetails['zip_code']) ? $billingAddressDetails['zip_code'] : ''; ?>">
         <p>
-            <?php echo isset($_SESSION['update_errors']['zip_code']) ? $_SESSION['update_errors']['zip_code'] : ''; ?>  
+            <?php echo isset($_SESSION['update_errors_billing']['zip_code']) ? $_SESSION['update_errors_billing']['zip_code'] : ''; ?>  
         </p>
     </div>
     <div>
@@ -171,7 +171,7 @@ $billingAddressDetails= getAddressbyId($userDetails['billing_address_id']);
             <option value="Canada" <?php echo (isset($billingAddressDetails['country']) && $billingAddressDetails['country'] === 'Canada') ? 'selected' : ''; ?>>Canada</option>
         </select>
         <p>
-            <?php echo isset($_SESSION['update_errors']['country']) ? $_SESSION['update_errors']['country'] : ''; ?>  
+            <?php echo isset($_SESSION['update_errors_billing']['country']) ? $_SESSION['update_errors_billing']['country'] : ''; ?>  
         </p>
     </div>
 
@@ -182,14 +182,14 @@ $billingAddressDetails= getAddressbyId($userDetails['billing_address_id']);
         <label for="shipping_street_name">Street Name :</label>
         <input id="shipping_street_name" type="text" name="shipping_street_name" value="<?php echo isset($shippingAddressDetails['street_name']) ? $shippingAddressDetails['street_name'] : ''; ?>">
         <p>        
-            <?php echo isset($_SESSION['update_errors']['street_name']) ? $_SESSION['update_errors']['street_name'] : ''; ?>  
+            <?php echo isset($_SESSION['update_errors_shipping']['street_name']) ? $_SESSION['update_errors_shipping']['street_name'] : ''; ?>  
         </p>
     </div>
     <div>
         <label for="shipping_street_nb">Street Number :</label>
         <input id="shipping_street_nb" type="text" name="shipping_street_nb" value="<?php echo isset($shippingAddressDetails['street_nb']) ? $shippingAddressDetails['street_nb'] : ''; ?>">
         <p>
-            <?php echo isset($_SESSION['update_errors']['street_nb']) ? $_SESSION['update_errors']['street_nb'] : ''; ?>  
+            <?php echo isset($_SESSION['update_errors_shipping']['street_nb']) ? $_SESSION['update_errors_shipping']['street_nb'] : ''; ?>  
         </p>
     </div>
     <div>
@@ -203,7 +203,7 @@ $billingAddressDetails= getAddressbyId($userDetails['billing_address_id']);
           
         </select>
         <p>
-            <?php echo isset($_SESSION['update_errors']['city']) ? $_SESSION['update_errors']['city'] : ''; ?>
+            <?php echo isset($_SESSION['update_errors_shipping']['city']) ? $_SESSION['update_errors_shipping']['city'] : ''; ?>
         </p>
     </div>
     <div>
@@ -222,14 +222,14 @@ $billingAddressDetails= getAddressbyId($userDetails['billing_address_id']);
        
         </select>
         <p>
-            <?php echo isset($_SESSION['update_errors']['province']) ? $_SESSION['update_errors']['province'] : ''; ?>  
+            <?php echo isset($_SESSION['update_errors_shipping']['province']) ? $_SESSION['update_errors_shipping']['province'] : ''; ?>  
         </p>
     </div>
     <div>
         <label for="shipping_zip_code">ZIP Code :</label>
         <input id="shipping_zip_code" type="text" name="shipping_zip_code" value="<?php echo isset($shippingAddressDetails['zip_code']) ? $shippingAddressDetails['zip_code'] : ''; ?>">
         <p>
-            <?php echo isset($_SESSION['update_errors']['zip_code']) ? $_SESSION['update_errors']['zip_code'] : ''; ?>  
+            <?php echo isset($_SESSION['update_errors_shipping']['zip_code']) ? $_SESSION['update_errors_shipping']['zip_code'] : ''; ?>  
         </p>
     </div>
     <div>
@@ -238,7 +238,7 @@ $billingAddressDetails= getAddressbyId($userDetails['billing_address_id']);
             <option value="Canada" <?php echo (isset($shippingAddressDetails['country']) && $shippingAddressDetails['country'] === 'Canada') ? 'selected' : ''; ?>>Canada</option>
         </select>
         <p>
-            <?php echo isset($_SESSION['update_errors']['country']) ? $_SESSION['update_errors']['country'] : ''; ?>  
+            <?php echo isset($_SESSION['update_errors_shipping']['country']) ? $_SESSION['update_errors_shipping']['country'] : ''; ?>  
         </p>
     </div>
 

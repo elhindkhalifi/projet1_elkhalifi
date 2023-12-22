@@ -94,16 +94,17 @@ p {
     font-size: 0.8rem;
 }
 
-button{
+input[type="submit"] {
     background-color: #4D6881;
     color: #fff;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
-button:hover {
+input[type="submit"]:hover {
     background-color: #c2185b;
 }
+
 
     </style>
 </head>
@@ -162,7 +163,7 @@ button:hover {
         </p>
     </div>
 
-    <button type="submit">S'enregistrer</button>
+    <input type="submit" value="Sign Up">
 </form>
 <?php
 include "../public/footer.php";

@@ -5,13 +5,13 @@ function createUser(array $data)
 {
     global $conn;
     
-    $query = "INSERT INTO user(id,user_name,email,pwd,fname,lname, role_id) VALUES (NULL, ?, ?, ?, ?, ?, 3)";
+    $query = "INSERT INTO user(id,name,email,pwd,fname,lname, role_id) VALUES (NULL, ?, ?, ?, ?, ?, 3)";
     if ($stmt = mysqli_prepare($conn, $query)) {
         
         mysqli_stmt_bind_param(
             $stmt,
             "sssss",
-            $data['user_name'],
+            $data['name'],
             $data['email'],
             $data['pwd'],
             $data['fname'],
@@ -56,11 +56,11 @@ function getUserById(int $id)
 }
 
 //recuperer un user avec son nom dutilisateur
-function getUserByUsername(string $user_name)
+function getUserByUsername(string $name)
 {
     global $conn;
 
-    $query = "SELECT * FROM user WHERE user.user_name = '" . $user_name . "';";
+    $query = "SELECT * FROM user WHERE user_name = '" . $name . "';";
 
     $result = mysqli_query($conn, $query);
 
@@ -70,11 +70,11 @@ function getUserByUsername(string $user_name)
 }
 
 //modifier un utilisateur
-function updateUser(array $data,$user_name)
+function updateUser(array $data,$name)
 {
     global $conn;
 
-        $query = "UPDATE user SET email = ?,pwd = ?,fname = ?,lname = ?,billing_address_id = ?,shipping_address_id = ? WHERE user.user_name=?";
+        $query = "UPDATE user SET email = ?,pwd = ?,fname = ?,lname = ?,billing_address_id = ?,shipping_address_id = ? WHERE user_name=?";
         if ($stmt = mysqli_prepare($conn, $query)) {
             
             mysqli_stmt_bind_param(
@@ -86,7 +86,7 @@ function updateUser(array $data,$user_name)
                 $data['lname'],
                 $data['billing_address_id'],
                 $data['shipping_address_id'],
-                $user_name
+                $name
             );
 
         /* Exécution de la requête */
@@ -95,21 +95,43 @@ function updateUser(array $data,$user_name)
 
     }
 }
+require_once("../config/connexion.php");
+
+
+
+// Function to update user addresses based on user ID
+function updateUserAddresses($conn, $userID, $billingAddressID, $shippingAddressID) {
+    // Update the user's billing address ID
+    $updateBillingAddressID = mysqli_prepare($conn, "UPDATE user SET billing_address_id = ? WHERE user.id = ?");
+    mysqli_stmt_bind_param($updateBillingAddressID, 'ii', $billingAddressID, $userID);
+    mysqli_stmt_execute($updateBillingAddressID);
+
+    // Update the user's shipping address ID
+    $updateShippingAddressID = mysqli_prepare($conn, "UPDATE user SET shipping_address_id = ? WHERE user.id = ?");
+    mysqli_stmt_bind_param($updateShippingAddressID, 'ii', $shippingAddressID, $userID);
+    mysqli_stmt_execute($updateShippingAddressID);
+
+    mysqli_stmt_close($updateBillingAddressID);
+    mysqli_stmt_close($updateShippingAddressID);
+}
+
+
+
 
 //supprimer un utilisateur
-function deleteUser( $user_name)
+function deleteUser( $name)
 {
     global $conn;
 
     $query = "DELETE FROM user
-                WHERE user.user_name= ?;";
+                WHERE user.name= ?;";
 
     if ($stmt = mysqli_prepare($conn, $query)) {
 
         mysqli_stmt_bind_param(
             $stmt,
             "s",
-            $user_name,
+            $name,
         );
 
         /* Exécution de la requête */
