@@ -95,6 +95,31 @@ function updateUser(array $data,$name)
 
     }
 }
+function updateUserbyAdmin($user_id, $data)
+{
+    global $conn;
+
+    $query = "UPDATE user SET email = ?, pwd = ?, fname = ?, lname = ?, user_name = ? WHERE id = ?";
+    if ($stmt = mysqli_prepare($conn, $query)) {
+        mysqli_stmt_bind_param(
+            $stmt,
+            "sssssi",
+            $data['email'],
+            $data['pwd'],
+            $data['fname'],
+            $data['lname'],
+            $data['user_name'],
+            $user_id
+        );
+
+        // Execution of the query
+        $result = mysqli_stmt_execute($stmt);
+        return $result;
+    }
+
+    return false;
+}
+
 require_once("../config/connexion.php");
 
 
@@ -124,7 +149,7 @@ function deleteUser( $name)
     global $conn;
 
     $query = "DELETE FROM user
-                WHERE user.name= ?;";
+                WHERE user.user_name= ?;";
 
     if ($stmt = mysqli_prepare($conn, $query)) {
 
