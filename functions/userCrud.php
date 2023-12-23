@@ -171,3 +171,40 @@ function updateUserToken($userId, $token) {
     mysqli_query($conn, $sql);
 
 }
+
+
+// Update user role by user ID
+function updateUserRole($user_id, $new_role_id)
+{
+    global $conn;
+
+    $query = "UPDATE user SET role_id = ? WHERE id = ?";
+    
+    if ($stmt = mysqli_prepare($conn, $query)) {
+        mysqli_stmt_bind_param($stmt, "ii", $new_role_id, $user_id);
+
+        // Execution of the query
+        $result = mysqli_stmt_execute($stmt);
+        return $result;
+    }
+
+    return false; // Return false in case of failure
+}
+// userCrud.php
+
+function getClients()
+{
+    global $conn;
+
+    $query = "SELECT * FROM user WHERE role_id = 3"; // Assuming 3 is the role_id for clients
+    $result = mysqli_query($conn, $query);
+
+    $clients = array();
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $clients[] = $row;
+    }
+
+    return $clients;
+}
+
