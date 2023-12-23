@@ -9,14 +9,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['user_id'])) {
     $user = getUserById($user_id);
 
     if ($user) {
-        // Call your deleteUser function with the user username or ID
-        $deleteResult = deleteUser($user['user_name']); // Assuming 'username' is the user identifier
+        $deleteResult = deleteUser($user['user_name']); 
 
         if ($deleteResult) {
             echo "User deleted successfully!";
-            // Optionally, you may redirect the user to the user listing page
-            // header("Location: userList.php");
-            // exit();
+           
         } else {
             echo "Error deleting user.";
         }

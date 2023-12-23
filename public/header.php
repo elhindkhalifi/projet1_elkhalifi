@@ -103,8 +103,8 @@
         <div class="header-col">
           <ul>
             <li><a href="../home.php">Home</a></li>
-            <li><a href="#">Products</a></li>
-            <li><a href="#">Cart</a></li>
+            <li><a href="../gestion/products.php">Products</a></li>
+            <li><a href="../gestion/viewCart.php">Cart</a></li>
           </ul>
         </div>
         </div>

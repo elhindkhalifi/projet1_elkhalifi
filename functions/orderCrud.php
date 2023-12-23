@@ -1,9 +1,5 @@
 <?php 
-require_once("../config/connexion.php");
-require_once('../functions/userCrud.php');
-require_once('../functions/orderCrud.php');
-require_once('../functions/addressCrud.php');
-require_once('../functions/productCrud.php');
+
 function createOrder($user_id, $total_amount, $cart) {
     global $conn;
 
@@ -35,7 +31,7 @@ function createOrder($user_id, $total_amount, $cart) {
 }
 
 function generateOrderReference() {
-    // Generate a unique order reference (you can customize this based on your needs)
+    // Generate a unique order reference 
     return 'ORDER' . strtoupper(uniqid());
 }
 function getOrderHistory($user_id) {
@@ -72,7 +68,7 @@ function calculateTotalPrice($cart) {
 }
 
 
-// Assume that you have a function to get the user's cart from the session
+// get the user's cart from the session
 function getUserCart() {
     if (isset($_SESSION['cart'])) {
         return $_SESSION['cart'];
@@ -85,7 +81,6 @@ function getCartContents() {
     $cart = getUserCart();
     $cartContents = array();
 
-    // Assume that you have a function to get product details by ID
     foreach ($cart as $product_id => $quantity) {
         $product = getProductById($product_id);
 
@@ -123,6 +118,7 @@ function placeOrder($user_id, $payment_method) {
 
     // Insert order into the database
     $orderRef = generateOrderReference(); 
+    $date = date("Y-m-d");
     
     $insertOrderQuery = "INSERT INTO user_order (ref, date, total, user_id) VALUES ('$orderRef', '$date', $totalPrice, $user_id)";
     mysqli_query($conn, $insertOrderQuery);

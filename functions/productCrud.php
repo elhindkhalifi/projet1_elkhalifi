@@ -1,6 +1,6 @@
 <?php
 
-//creer un utilisateur
+//creer un produit
 function createProduct(array $data)
 {
     global $conn;
@@ -27,7 +27,7 @@ function createProduct(array $data)
 
 }
 
-//recuperer tous les utilisateurs
+//recuperer tous les produits
 function getAllProducts()
 {
     global $conn;
@@ -43,9 +43,8 @@ function getAllProducts()
     return $data;
 }
 
-//recuperer un user avec son id
+//recuperer un produit avec son id
  //Todo: edit to prepare
-// productCrud.php
 
 function getProductById(int $id)
 {
@@ -65,7 +64,7 @@ function getProductById(int $id)
 }
 
 
-//recuperer un user avec son nom dutilisateur
+//recuperer un produit avec son nom produit
 function getProductByName(string $name)
 {
     global $conn;
@@ -79,7 +78,7 @@ function getProductByName(string $name)
     return $data;
 }
 
-//modifier un utilisateur
+//modifier un produit
 function updateProduct(array $data,$user_name)
 {
     global $conn;
@@ -105,7 +104,7 @@ function updateProduct(array $data,$user_name)
     }
 }
 
-//supprimer un utilisateur
+//supprimer un produit
 function deleteProduct($id)
 {
     global $conn;

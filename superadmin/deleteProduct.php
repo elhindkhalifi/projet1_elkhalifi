@@ -10,7 +10,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['product_id'])) {
 
     if ($deleteResult) {
         echo "Product deleted successfully!";
-        // Optionally, you may redirect the user to the product listing page
        
     } else {
         echo "Error deleting product.";

@@ -49,12 +49,12 @@ $products = getAllProducts();
     .productContainer {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between; /* or use space-around or space-evenly */
+        justify-content: space-between; 
     }
 
     .product {
-        width: 30%; /* Adjust the width as needed */
-        margin-bottom: 20px; /* Adjust the margin as needed */
+        width: 30%;
+        margin-bottom: 20px; 
         text-align: center;
     }
 

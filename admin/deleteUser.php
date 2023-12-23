@@ -14,10 +14,10 @@
 
 <?php
 require_once("../config/connexion.php");
-require_once("../functions/userCrud.php"); // Assuming you have a userCrud.php file
+require_once("../functions/userCrud.php");
 require_once ('../functions/functions.php');
 session_start();
-$users = getClients(); // Assuming you have a function like getAllUsers() to retrieve user data
+$users = getClients(); 
 ?>
 
 <main>
