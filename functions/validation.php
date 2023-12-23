@@ -184,7 +184,26 @@ function productPriceIsValid($price)
         'msg' => ''
     ];
 }
+function productQuantityIsValid($quantity)
+{
+    // Validate product quantity
+    if (empty($quantity)) {
+        return [
+            'isValid' => false,
+            'msg' => 'La quantite du produit est requis.'
+        ];
+    } elseif (!is_numeric($quantity) || $quantity <= 0) {
+        return [
+            'isValid' => false,
+            'msg' => 'quanite du produit invalide.'
+        ];
+    }
 
+    return [
+        'isValid' => true,
+        'msg' => ''
+    ];
+}
 function productImgIsValid($img)
 {
     // Validate product image URL
@@ -217,6 +236,12 @@ function validateProductImage($file)
     $target_file = $target_dir . basename($file['name']);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+       // Check if the user has chosen a file
+    if (empty($file['name'])) {
+        $result['isValid'] = false;
+        $result['msg'] = "Veuillez choisir une image. L'image est requise.";
+        return $result;
+    }
 
     // Check if file is an actual image or fake image
     $check = getimagesize($file['tmp_name']);
@@ -251,6 +276,7 @@ function validateProductImage($file)
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
         $result['isValid'] = false;
+        $result['msg'] = "Le fichier n'est pas ";
         return $result;
     } else {
         // If everything is ok, try to upload file

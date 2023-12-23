@@ -10,7 +10,7 @@ function createProduct(array $data)
         
         mysqli_stmt_bind_param(
             $stmt,
-            "sidsss",
+            "sidss",
             $data['name'],
             $data['quantity'],
             $data['price'],
@@ -96,19 +96,19 @@ function updateProduct(array $data,$user_name)
 }
 
 //supprimer un utilisateur
-function deleteProduct($name)
+function deleteProduct($id)
 {
     global $conn;
 
     $query = "DELETE FROM product
-                WHERE product.name= ?;";
+                WHERE product.id= ?;";
 
     if ($stmt = mysqli_prepare($conn, $query)) {
 
         mysqli_stmt_bind_param(
             $stmt,
-            "s",
-            $name,
+            "i",
+            $id,
         );
 
         /* Exécution de la requête */

@@ -1,6 +1,19 @@
-<a href="../">Accueil</a>
+
+
 <?php
-include "../public/header.php";
+include "../public/header.php";?>
+<header class="header">
+<div class="container">
+ <div class="row">
+   <div class="header-col">
+     <ul>
+       <li><a href="../adminHome.php">Admin Home</a></li>
+     </ul>
+   </div>
+ </div>
+</div>
+</header>
+<?php
 require_once("../config/connexion.php");
 require_once("../functions/productCrud.php");
 require_once ('../functions/functions.php');
@@ -28,7 +41,10 @@ if (isset($_SESSION['product_form']['description'])) {
     $description = $_SESSION['product_form']['description'];
 }
 
-
+$quantity = '';
+if (isset($_SESSION['product_form']['quantity'])) {
+    $quantity = $_SESSION['product_form']['quantity'];
+}
 
 ?>
 <!DOCTYPE html>
@@ -58,7 +74,7 @@ a {
     color: #4D6881;
     text-decoration: none;
     font-weight: bold;
-    display: block; /* Ensures the margin-bottom works properly */
+    display: block; 
 }
 
 form {
@@ -115,7 +131,7 @@ input[type="submit"]:hover {
 <a href="../adminHome.php">Retour Acceuil</a>
 </center>
 <!-- Chaque formulaire a sa page de résultats -->
-<form method="post" action="../results/addProductResult.php" enctype="multipart/form-data">
+<form method="post" action="../results/addProductResult.php"  enctype="multipart/form-data">
     <div>
         <label for="product_image">Image du produit :</label>
         <input type="file" name="product_image" id="product_image" accept="image/*">
@@ -149,7 +165,15 @@ input[type="submit"]:hover {
             <?php echo isset($_SESSION['product_errors']['price'])? $_SESSION['product_errors']['price'] : '' ?>  
         </p>
     </div>
-    <input type="submit" value="Ajouter Produit">
+    <div>
+        <label for="quantity">Quantity :</label>
+        <input id="quantity" type="text" name="quantity" value="<?php echo $quantity ?>">
+        <!-- afficher les erreurs -->
+        <p style="color: red; font-size: 0.8rem;">
+            <?php echo isset($_SESSION['product_errors']['quantity'])? $_SESSION['product_errors']['quantity'] : '' ?>  
+        </p>
+    </div>
+    <button type="submit" name="submit">Ajouter produit</button>
 
 </form>
 

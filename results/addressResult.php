@@ -88,7 +88,7 @@ if ($validationBilling && $validationShipping) {
     // Create addresses and get last inserted IDs
     $billingAddressID = createAddress($dataBillingAddress);
     $shippingAddressID = createAddress($dataShippingAddress);
-    var_dump($shippingAddressID);
+    
 
     // Mettez à jour les adresses dans la base de données
     updateUserAddresses($conn, $_SESSION['user_id'], $billingAddressID, $shippingAddressID);
