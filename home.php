@@ -25,6 +25,10 @@ if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true)
   	 	<div class="row">
   	 		<div class="footer-col">
                <br>
+               <h4>Cart</h4>
+  	 			<ul>
+                    <li><a href="./gestion/viewCart.php">View Cart</a></li>
+  	 			</ul><br>
   	 			<h4>Products</h4>
   	 			<ul>
                     <li><a href="./gestion/products.php">Hats</a></li>

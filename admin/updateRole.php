@@ -13,6 +13,7 @@
 </header>
 
 <?php
+//todo:onlysuperadmins can access certain things and add header admin 
 require_once("../config/connexion.php");
 require_once("../functions/userCrud.php");
 require_once ('../functions/functions.php');

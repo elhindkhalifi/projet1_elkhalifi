@@ -45,15 +45,25 @@ function getAllProducts()
 
 //recuperer un user avec son id
  //Todo: edit to prepare
+// productCrud.php
+
 function getProductById(int $id)
 {
     global $conn;
-    $result = mysqli_query($conn, "SELECT * FROM user WHERE id = " . $id);
 
-    $data = mysqli_fetch_assoc($result);
+    $query = "SELECT * FROM product WHERE id = ?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
 
-    return $data;
+    if ($result && $product = mysqli_fetch_assoc($result)) {
+        return $product;
+    } else {
+        return null; // Product not found
+    }
 }
+
 
 //recuperer un user avec son nom dutilisateur
 function getProductByName(string $name)

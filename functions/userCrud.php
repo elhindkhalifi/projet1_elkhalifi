@@ -5,13 +5,13 @@ function createUser(array $data)
 {
     global $conn;
     
-    $query = "INSERT INTO user(id,name,email,pwd,fname,lname, role_id) VALUES (NULL, ?, ?, ?, ?, ?, 3)";
+    $query = "INSERT INTO user(id,user_name,email,pwd,fname,lname, role_id) VALUES (NULL, ?, ?, ?, ?, ?, 3)";
     if ($stmt = mysqli_prepare($conn, $query)) {
         
         mysqli_stmt_bind_param(
             $stmt,
             "sssss",
-            $data['name'],
+            $data['user_name'],
             $data['email'],
             $data['pwd'],
             $data['fname'],
