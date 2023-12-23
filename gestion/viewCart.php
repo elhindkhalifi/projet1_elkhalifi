@@ -3,6 +3,8 @@ include "../public/header.php";
 require_once("../config/connexion.php");
 require_once("../functions/productCrud.php");
 require_once ('../functions/functions.php');
+require_once('../functions/orderCrud.php');
+
 session_start();
 
 if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
@@ -26,10 +28,16 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
             echo "</li>";
         }
     }
+    
 
-    echo "</ul></center>";
-}
+    echo "</ul>";
+}  // Add a button to place the order
 
+echo "<form action='../orders/placeOrder.php' method='post'>";
+echo "<input type='submit' value='Place Order'>";
+echo "</form>";
+
+echo "</center>";
 include "../public/footer.php";
 ?>
 
